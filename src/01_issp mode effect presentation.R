@@ -3,29 +3,37 @@
 # Author: Matpen
 #
 #
-# Date Created: 2022-05-30
+# Date Created: 2022-28-09
 #
 #
-# Script Name:
+# Script Name: mode-effect analysis
 #
 #
-# Script Description:
+# Script Description: apply bayesian methods (CFA lin.-reg.) to detect 
+# mixed-mode effect on two constructs of the ISSP-envionmental module
 #
 #
-# inputs
+# inputs: .sav file --> ssö data 
 # 
 # 
-# outputs
-#
+# outputs two .doc files including regression tabels and two .png files 
+#  showing posterior densities
+# 
 #
 #
 # Notes:
-#   
+#
+#either use renv::restore() to restore packages inlcuded in lockfile or
+#or if error --> manually install list of packages using code below
 #
 ## Packages  -------------------------
 
+
+renv::restore()
+
+
 packages <- c("tidyverse", "rstan", "rstanarm", "haven",
-              "lavaan", "blavaan", "patrchwork",
+              "lavaan", "blavaan", "patchwork",
               "bayesplot", "sjPlot", "janitor", 
               "tidybayes", "table1", "sjmisc")
 
@@ -41,8 +49,7 @@ issp <-
   read_sav("data/ISSP_env2021_cleaned.sav") %>% 
   clean_names(.)
 
-# data preparation one --------------------------------------------------------
-
+# data preparation ------------------------------------------------------
 
 issp$SurveyMode <- factor(issp$quelle, labels = c("CATI", "CAPI"))
 
