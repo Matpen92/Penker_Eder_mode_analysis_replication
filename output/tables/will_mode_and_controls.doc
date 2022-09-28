@@ -1,0 +1,89 @@
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">will rec</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">will rec</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Coefficients</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI (95%)</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI (95%)</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Survey mode CAPI (CATI=ref.)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.31</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.46&nbsp;&ndash;&nbsp;-0.17</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.19</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.33&nbsp;&ndash;&nbsp;-0.05</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">SPÖ</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.14</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.34&nbsp;&ndash;&nbsp;0.06</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">FPÖ</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.41</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.67&nbsp;&ndash;&nbsp;-0.16</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Green Party</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.03&nbsp;&ndash;&nbsp;0.47</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">NEOS</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.19</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.15&nbsp;&ndash;&nbsp;0.51</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Other Party</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.06</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.65&nbsp;&ndash;&nbsp;0.55</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">No Answer</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.11</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.30&nbsp;&ndash;&nbsp;0.07</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Political Interes (high - low)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.33</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.41&nbsp;&ndash;&nbsp;-0.25</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Left-Right Self-Assesment (left-right</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.04</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.09&nbsp;&ndash;&nbsp;-0.00</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">1250</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">1150</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">R<sup>2</sup> Bayes</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.015</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.110</td>
+</tr>
+
+</table>
+

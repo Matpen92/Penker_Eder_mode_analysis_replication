@@ -24,20 +24,16 @@
 #
 ## Packages  -------------------------
 
-library(dplyr)
-library(rstan)
-library(brms)
-library(haven)
-library(lavaan)
-library(janitor)
-library(rstanarm)
-library(blavaan)
-library(bayesplot)
-library(blavaan)
-library(sjPlot)
-library(tidybayes)
-library(table1)
-library(sjmisc)
+packages <- c("tidyverse", "rstan", "rstanarm", "haven",
+              "lavaan", "blavaan", "patrchwork",
+              "bayesplot", "sjPlot", "janitor", 
+              "tidybayes", "table1", "sjmisc")
+
+
+lapply(packages, install.packages , character.only = TRUE)
+
+lapply(packages, library, character.only = TRUE)
+
 
 # data --------------------------------------------------------------------
 
@@ -45,7 +41,7 @@ issp <-
   read_sav("data/ISSP_env2021_cleaned.sav") %>% 
   clean_names(.)
 
-# table one ---------------------------------------------------------------
+# data preparation one --------------------------------------------------------
 
 
 issp$SurveyMode <- factor(issp$quelle, labels = c("CATI", "CAPI"))
@@ -55,12 +51,38 @@ issp$d27_rec <-  factor(issp$d27_rec,
                                    "Green Party", "NEOS", 
                                    "Other Party", "No Answer"))
 
+invertItem <- function(items, maxvalue = 5, minvalue = 1){
+  if(!is.numeric(maxvalue)) stop("maxvalue must be numeric!")
+  if(!is.numeric(minvalue)) stop("minvalue must be numeric!")
+  if(minvalue >= maxvalue) warning("Warning in invertItem: minvalue >= maxvalue")
+  return((maxvalue+minvalue) - items)
+}
+
+issp <- 
+  issp %>% 
+  rowwise() %>% 
+  mutate(will = mean( c11_1 , c11_2 , c11_3, na.rm = T),
+         trust = mean( c5_1 , c5_2 , c5_3 , c5_4 , na.rm = T),
+         d27_rec = case_when(d27 == 1 ~ 1,
+                             d27 == 2 ~ 2,
+                             d27 == 3 ~ 3,
+                             d27 == 4 ~ 4,
+                             d27 == 5 ~ 5,
+                             d27 >  5 ~ 6,
+                             is.na(d27) ~ 7),
+         will_rec = invertItem(will ))
+
+
 label(issp$age) <- "Age"
 label(issp$d1)  <- "Gender"
 label(issp$d27_rec) <- "Vote last Election"
 label(issp$b15) <- "Political Interest (high-low)"
 label(issp$d35) <- "Personal Net-Income"
 label(issp$d28) <- "Left-Right Self-Assesment (left-right)"
+
+
+
+# desciptive table --------------------------------------------------------
 
 
 issp %>% 
@@ -210,28 +232,6 @@ fitMeasures(fitc)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
 
-invertItem <- function(items, maxvalue = 5, minvalue = 1){
-  if(!is.numeric(maxvalue)) stop("maxvalue must be numeric!")
-  if(!is.numeric(minvalue)) stop("minvalue must be numeric!")
-  if(minvalue >= maxvalue) warning("Warning in invertItem: minvalue >= maxvalue")
-  return((maxvalue+minvalue) - items)
-}
-
-
-issp <- 
-  issp %>% 
-  rowwise() %>% 
-  mutate(will = mean( c11_1 , c11_2 , c11_3, na.rm = T),
-         trust = mean( c5_1 , c5_2 , c5_3 , c5_4 , na.rm = T),
-         d27_rec = case_when(d27 == 1 ~ 1,
-                             d27 == 2 ~ 2,
-                             d27 == 3 ~ 3,
-                             d27 == 4 ~ 4,
-                             d27 == 5 ~ 5,
-                             d27 >  5 ~ 6,
-                             is.na(d27) ~ 7),
-         will_rec = invertItem(will ))
-
 
 mod1 <- 
   issp %>% 
@@ -244,7 +244,7 @@ mod1 <-
 
 mod2 <- 
   issp %>% 
-  stan_glm( will_rec ~  quelle +  as.factor(d27_rec)   + d28  ,
+  stan_glm( will_rec ~  quelle +  as.factor(d27_rec) + b15  + d28  ,
             family = gaussian(link = "identity"),
             seed = 12345,
             prior = normal(0, 2),
@@ -280,20 +280,17 @@ tab_model(mod1, mod2, show.intercept = F,
           file = "output/tables/will_mode_and_controls.doc")
 
 
-p1 <-
+p1 <- 
   plot(mod3,  pars = "quelle" ,  plotfun = "hist") +
   xlab("Institutional Trust") +
-  theme(axis.title.x  = element_text(family = "Comic Sans MS") )+
   theme_blank()
  
                  
 p2 <- 
   plot(mod1, pars = "quelle" , plotfun = "hist") + 
   xlab("Willigness to Sacrifice") +
-  theme(axis.title.x  = element_text(family = "Comic Sans MS")) + 
   theme_blank()
 
-library(patchwork)
 
 p_expo <- 
   p1 + p2 +
@@ -335,8 +332,6 @@ p3 <-
   labs(x = "")  +
   ggtitle("Unadjusted vs. Adjusted CATI vs. CAPI Mode Differences: Willigness to Sacrifice")
 
-p3
-
+# export p3 using RSTUDIO plot-pane, other export function ignore theme
 
   
-
