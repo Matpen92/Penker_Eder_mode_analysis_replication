@@ -332,6 +332,6 @@ p3 <-
   labs(x = "")  +
   ggtitle("Unadjusted vs. Adjusted CATI vs. CAPI Mode Differences: Willigness to Sacrifice")
 
-# export p3 using RSTUDIO plot-pane, other export function ignore theme
+p3
 
-  
+# export p3 using RSTUDIO plot-pane, other export function ignore theme
