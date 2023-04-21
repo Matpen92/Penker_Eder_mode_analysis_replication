@@ -3,7 +3,7 @@
 # Author: Matpen
 #
 #
-# Date Created: 2022-28-09
+# Date Created: 2023-21-04
 #
 #
 # Script Name: mode-effect analysis
@@ -13,11 +13,7 @@
 # mixed-mode effect on two constructs of the ISSP-envionmental module
 #
 #
-# inputs: .sav file --> ssö data 
-# 
-# 
-# outputs two .doc files including regression tabels and two .png files 
-#  showing posterior densities
+# inputs: .sav file
 # 
 #
 #
@@ -29,7 +25,6 @@
 ## Packages  -------------------------
 
 renv::restore()
-
 
 packages <- c("tidyverse", "rstan", "rstanarm", "haven",
               "lavaan", "blavaan", "patchwork",
@@ -63,7 +58,7 @@ library(DiagrammeR)
 # data --------------------------------------------------------------------
 
 issp <-
-  read_sav("data/ISSP_env2021_cleaned.sav") %>% 
+  read_sav("data/ISSP_env2021_cleaned_replication.sav") %>% 
   clean_names(.)
 
 # table one ---------------------------------------------------------------
@@ -111,9 +106,6 @@ label(issp$d3_rec) <- "Highest completed degree of education"
 t1 <- issp %>% 
   table1(~ to_factor(d1) + age + to_factor(d3_rec)  + d35 + b15 + to_factor(d27_rec)+ d28  | SurveyMode, data =.)
 
-t1flex(t1) %>% 
-  flextable::save_as_docx(path="output/tables/table1_paper.docx")
-
 # mean table --------------------------------------------------------------
 
 invertItem <- function(items, maxvalue = 5, minvalue = 1){
@@ -127,15 +119,10 @@ issp <-
   issp %>% 
   mutate_at(c("c11_1", "c11_2", "c11_3"),invertItem)
 
-
 issp %>% 
   select(c5_1:c5_4,c11_1:c11_3, quelle) %>% 
   table1(~.  | to_factor(quelle),
-         data = .)  %>% 
-  table1::t1flex(.) %>% 
-  width(.,j = 1, 3,  unit = "cm") %>% 
-  flextable::save_as_docx(path="output/tables/mean_table_paper.docx")
-
+         data = .) 
 
 # Bayesian sem insti --------------------------------------------------------
 
@@ -287,7 +274,6 @@ rstan_options(auto_write = TRUE)
 #   return((maxvalue+minvalue) - items)
 # }
 
-
 issp <- 
   issp %>% 
   rowwise() %>% 
@@ -347,19 +333,8 @@ mod4 <-
 tab_model(mod3, mod1,  show.intercept = F, 
           string.pred = "Coefficients",
           pred.labels = c( " Survey mode CAPI (CATI=ref.)"),
-          dv.labels = c("Institutional Trust", "Willigness to Sacrifice"),
-          file = "output/tables/only_mode_effect.doc")
+          dv.labels = c("Institutional Trust", "Willigness to Sacrifice"))
 
-
-tab_model(mod1, mod3, mod2, mod4, 
-          show.intercept = F, 
-          collapse.ci = T,
-          string.pred = "Coefficients" ,
-          pred.labels = c( "Survey mode CAPI (CATI=ref.)", 
-                           "SPÖ", "FPÖ", "Green Party",
-                           "NEOS", "Other Party", "No Answer",
-                           "Left-Right Self-Assesment (left-right)"),
-          file = "output/tables/will_mode_and_controls.doc")
 
 tab_model(mod1, mod3, mod2, mod4, 
           show.intercept = F, 
@@ -370,31 +345,14 @@ tab_model(mod1, mod3, mod2, mod4,
                            "NEOS", "Other Party", "No Answer",
                            "Left-Right Self-Assesment (left-right)"))
 
-
-p1 <-
-  plot(mod3,  pars = "quelle" ,  plotfun = "hist") +
-  xlab("Institutional Trust") +
-  theme(axis.title.x  = element_text(family = "Comic Sans MS") )+
-  theme_blank()
-
-
-p2 <- 
-  plot(mod1, pars = "quelle" , plotfun = "hist") + 
-  xlab("Willigness to Sacrifice") +
-  theme(axis.title.x  = element_text(family = "Comic Sans MS")) + 
-  theme_blank()
-
-library(patchwork)
-
-p_expo <- 
-  p1 + p2 +
-  plot_annotation(title = "Posterior Distributions of Mode Effects (CATI = ref.)",
-                  theme = theme(plot.title = element_text(size = 14,
-                                                          family = "Comic Sans MS")))
-
-ggsave(filename = "Posteriors_modes.png",
-       plot = p_expo,
-       path = "output/plots/")
+tab_model(mod1, mod3, mod2, mod4, 
+          show.intercept = F, 
+          collapse.ci = T,
+          string.pred = "Coefficients" ,
+          pred.labels = c( "Survey mode CAPI (CATI=ref.)", 
+                           "SPÖ", "FPÖ", "Green Party",
+                           "NEOS", "Other Party", "No Answer",
+                           "Left-Right Self-Assesment (left-right)"))
 
 
 # Tidy draws and overlapping densities ------------------------------------
@@ -424,9 +382,5 @@ p3 <-
   theme_blank() +
   theme(legend.title = element_blank()) + 
   labs(x = "")  
-
-
-
-
 
 
