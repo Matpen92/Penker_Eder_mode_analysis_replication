@@ -266,13 +266,6 @@ fitMeasures(fitc)
 
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
-# 
-# invertItem <- function(items, maxvalue = 5, minvalue = 1){
-#   if(!is.numeric(maxvalue)) stop("maxvalue must be numeric!")
-#   if(!is.numeric(minvalue)) stop("minvalue must be numeric!")
-#   if(minvalue >= maxvalue) warning("Warning in invertItem: minvalue >= maxvalue")
-#   return((maxvalue+minvalue) - items)
-# }
 
 issp <- 
   issp %>% 
